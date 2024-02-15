@@ -93,7 +93,7 @@ function deleteItem(e) {
     const index = Array.from(editable_form.children).indexOf(parentDiv);
     // Removing the corresponding element from DOM
     editable_form.removeChild(parentDiv);
-    alert("Successfully Deleted");
+    // alert("Successfully Deleted");
   }
 }
 
