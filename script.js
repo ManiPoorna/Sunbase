@@ -71,7 +71,18 @@ function save() {
     obj.id = child.id;
     obj.label = child.children[1].getAttribute("data-label");
     obj.type = child.children[1].getAttribute("data-type");
-    obj.placeholder = child.children[1].placeholder !== undefined ? child.children[1].placeholder : child.children[1].value
+    if (child.children[1].placeholder !== undefined) {
+      obj.placeholder = child.children[1].placeholder;
+    }
+    // if the input type is select then we add options instead of the placeholder
+    let values = []
+    // iterating through options in select tag and aking an array of option values
+    Array.from(child.children[1].children).forEach((option) => {
+      values.push(option.value)
+    });
+    if (values.length !== 0) {
+      obj.options = values
+    }
     // Adding each object to array
     addedElements.push(obj);
   })
@@ -79,7 +90,7 @@ function save() {
     alert("Please add some Components to save your Document");
     return;
   }
-  alert("Document Saved");
+  alert("Form Saved");
   console.log(addedElements)
 }
 
